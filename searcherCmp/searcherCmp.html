@@ -1,0 +1,52 @@
+<!-- sldsValidatorIgnore -->
+<!-- sldsValidatorIgnore -->
+<template>
+    <lightning-card title="Searching Component">
+        <div class="slds-m-around_medium">
+            <div class="customSelectDesign">
+                Select Modules
+                <select class="slds-select customSelectStyle" name = "objectSelect" onchange={handleObjectChange}>
+                    <option value={ALL_OBJECTS}>{ALL_OBJECTS}</option>
+        
+                    <template for:each = {allSobjects} for:item="obj">
+                        <option key={obj.id} value={obj.name}>{obj.name}</option>
+                    </template>
+                </select>
+                            
+                <table>
+                    <template for:each = {objRecords} for:item = "acc" for:index="indexVar">
+                        <tr key={acc.key} class="slds-hint-parent">
+                            <td class="slds-size_3-of-10">
+                                <select class="slds-select custoFieldsmSelect" name = "fieldsSelect" onchange={handleFieldChange}>
+                                    <option value={ALL_FIELDS}>{ALL_FIELDS}</option>                        
+                                    <template for:each = {allFields} for:item="obj">
+                                        <option key={obj.id} value={obj.id}>{obj.name}</option>
+                                    </template>
+                                </select>
+                            </td>
+                            <td class="slds-size_3-of-10 customSelectDesign">
+                                <select class="slds-select customFilterStyle" name = "objectSelect">
+                                    <option value={ALL_FILTERS}>{ALL_FILTERS}</option>                        
+                                    <template for:each = {allFilters} for:item="obj">
+                                        <option key={obj.id} value={obj.name}>{obj.name}</option>
+                                    </template>
+                                </select>
+                            </td>
+                            <td class="slds-size_3-of-10">
+                                <lightning-input data-id={acc.key} name="input1" label="Name" variant="label-hidden" onchange={handleNameChange}></lightning-input>
+                            </td>
+                            <td class="slds-size_1-of-10" data-label="RemoveAction">
+                                <a name={indexVar} data-id={acc.key} onclick={removeRow}>
+                                    <lightning-icon icon-name="utility:delete" alternative-text="delete"  size="small"></lightning-icon>
+                                </a>
+                            </td>
+                            <td class="slds-size_1-of-10" data-label="AddAction">
+                                <lightning-button-icon icon-name="utility:add" slot="actions" name={indexVar} onclick={addRow}></lightning-button-icon>
+                            </td>
+                        </tr>
+                    </template>                    
+                </table>
+            </div>
+        </div>  
+    </lightning-card>    
+</template>
